@@ -2,12 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 
-const User = require('./models/User'); // Importing the model
+const User = require('./models/User'); 
 
 const app = express();
 app.use(express.json());
 
-// Connect to MongoDB
+
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -18,8 +18,8 @@ mongoose.connect(process.env.MONGODB_URI, {
 app.get('/users', async (req, res) => {
   try {
     const users = await User.find();
-    console.log('📦 Users from DB:', users); // Logging to console
-    res.json(users); // Also sending to frontend
+    console.log('📦 Users from DB:', users); 
+    res.json(users); 
   } catch (err) {
     console.error('❌ Error fetching users:', err);
     res.status(500).send('Server error');
